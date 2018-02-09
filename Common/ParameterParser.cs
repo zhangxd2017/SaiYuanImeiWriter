@@ -62,9 +62,60 @@ namespace SaiYuan
             }
         }
 
-        public void Parse(string[] arguments)
+        private bool GetArguments(string key, string next)
         {
+            bool result = false;
+            for (int i = 0; i < paramLists.Count; i++)
+            {
+                if (paramLists[i].GetName().Equals(key))
+                {
+                    paramLists[i].SetValue(next);
+                    result = true;
+                }
+            }
+            return result;
+        }
 
+        private string CheckArguments()
+        {
+            for (int i = 0; i < paramLists.Count; i++)
+            {
+                CmdParameter parameter = paramLists[i];
+                if (parameter.IsNessesary() && StringUtils.IsEmpty(parameter.GetValue()))
+                {
+                    return parameter.GetErrorMessage();
+                }
+            }
+            return null;
+        }
+
+        public string Parse(string[] arguments)
+        {
+            for (int i = 0; i < arguments.Length; i++)
+            {
+                if (arguments[i].StartsWith("-"))
+                {
+                    string key = arguments[i].Substring(1);
+                    if (GetArguments(key, arguments[i+1]))
+                    {
+                        ++i;
+                    }
+                    else
+                    {
+                        return Useage();
+                    }
+                }
+                else
+                {
+                    return Useage();
+                }
+            }
+            return CheckArguments();
+        }
+
+        public string Useage()
+        {
+            return null;
         }
     }
 }
