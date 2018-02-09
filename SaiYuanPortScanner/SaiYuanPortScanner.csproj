@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8677F80C-CFC9-4B24-8CDD-52CDABCD4C22}</ProjectGuid>
+    <ProjectGuid>{F107EE87-8074-40D3-9E63-9FED8C6091BD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SaiYuanImeiWriter</RootNamespace>
-    <AssemblyName>SaiYuanImeiWriter</AssemblyName>
+    <RootNamespace>SaiYuanPortScanner</RootNamespace>
+    <AssemblyName>SaiYuanPortScanner</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
