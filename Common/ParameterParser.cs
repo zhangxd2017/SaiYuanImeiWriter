@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 
 namespace SaiYuan
 {
@@ -30,7 +31,7 @@ namespace SaiYuan
 
         public string GetValue()
         {
-            return _shortName;
+            return _value;
         }
 
         public bool IsNessesary()
@@ -67,7 +68,7 @@ namespace SaiYuan
             bool result = false;
             for (int i = 0; i < paramLists.Count; i++)
             {
-                if (paramLists[i].GetName().Equals(key))
+                if (paramLists[i].GetName().Equals(key, System.StringComparison.OrdinalIgnoreCase))
                 {
                     paramLists[i].SetValue(next);
                     result = true;
@@ -83,7 +84,7 @@ namespace SaiYuan
                 CmdParameter parameter = paramLists[i];
                 if (parameter.IsNessesary() && StringUtils.IsEmpty(parameter.GetValue()))
                 {
-                    return parameter.GetErrorMessage();
+                    return new StringBuilder().Append(" ").Append(parameter.GetErrorMessage()).AppendLine().ToString();
                 }
             }
             return null;
@@ -91,6 +92,11 @@ namespace SaiYuan
 
         public string Parse(string[] arguments)
         {
+            if (arguments.Length < 1)
+            {
+                return Useage();
+            }
+
             for (int i = 0; i < arguments.Length; i++)
             {
                 if (arguments[i].StartsWith("-"))
@@ -115,7 +121,24 @@ namespace SaiYuan
 
         public string Useage()
         {
-            return null;
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < paramLists.Count; i++)
+            {
+                if (paramLists[i].IsNessesary())
+                {
+                    stringBuilder.Append(" -").Append(paramLists[i].GetName()).Append(" xxx");
+                }
+                else
+                {
+                    stringBuilder.Append(" [").Append("-").Append(paramLists[i].GetName()).Append(" xxx]");
+                }
+            }
+            stringBuilder.AppendLine();
+            for (int i = 0; i < paramLists.Count; i++)
+            {
+                stringBuilder.Append("    -").Append(paramLists[i].GetName()).Append(" ").Append(paramLists[i].GetDescription()).AppendLine();
+            }
+            return stringBuilder.ToString();
         }
     }
 }

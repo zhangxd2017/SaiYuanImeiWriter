@@ -1,9 +1,6 @@
 ﻿using SaiYuan;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace SCPortScanner
 {
@@ -11,14 +8,23 @@ namespace SCPortScanner
     {
         static object[,] arguments = 
         {
-            {"a", true, "这是第一个参数", "请输入第一个参数" },
-            {"b", true, "这是第二个参数", "请输入第二个参数" },
-            {"c", false, "这是第三个参数", "" },
+            {"c", true, "串口号", "请输入当前工位端口号" },
+            {"i", true, "IMEI号码", "请输入要写入的IMEI号码" },
+            {"a", false, "这是一个可选参数", "" }
         };
 
         static void Main(string[] args)
         {
+            //log4net.ILog logInfo = log4net.LogManager.GetLogger("loginfo");
+            //logInfo.Info("测试日志写入");
             ParameterParser parameterParser = new ParameterParser(arguments);
+            string result = parameterParser.Parse(args);
+            if (!StringUtils.IsEmpty(result))
+            {
+                Console.Write(System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName);
+                Console.Write(result);
+                return;
+            }
         }
     }
 }

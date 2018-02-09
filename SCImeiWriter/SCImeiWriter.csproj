@@ -47,6 +47,9 @@
     <Compile Include="..\Common\ParameterParser.cs">
       <Link>ParameterParser.cs</Link>
     </Compile>
+    <Compile Include="..\Common\StringUtils.cs">
+      <Link>StringUtils.cs</Link>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
