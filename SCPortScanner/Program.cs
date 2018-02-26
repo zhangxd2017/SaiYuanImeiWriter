@@ -1,4 +1,5 @@
 ﻿using SaiYuan;
+using Spreadtrum;
 using System;
 using System.IO;
 
@@ -17,14 +18,15 @@ namespace SCPortScanner
         {
             //log4net.ILog logInfo = log4net.LogManager.GetLogger("loginfo");
             //logInfo.Info("测试日志写入");
-            ParameterParser parameterParser = new ParameterParser(arguments);
-            string result = parameterParser.Parse(args);
-            if (!StringUtils.IsEmpty(result))
-            {
-                Console.Write(System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName);
-                Console.Write(result);
-                return;
-            }
+            //ParameterParser parameterParser = new ParameterParser(arguments);
+            //string result = parameterParser.Parse(args);
+            //if (!StringUtils.IsEmpty(result))
+            //{
+            //    Console.Write(System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName);
+            //    Console.Write(result);
+            //    return;
+            //}
+            PhoneCommand.SP_EnterModeProcess()
         }
     }
 }
